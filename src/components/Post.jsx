@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { toPng } from 'html-to-image';
 import download from 'downloadjs';
-const backend = process.env.BACKEND || "http://localhost:5000"
+const backend = process.env.REACT_APP_BACKEND
 const placholderImg = "/placeholder.jpg"
 
 const Post = () => {
