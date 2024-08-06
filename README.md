@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+<h1 align="center">OG Generator- Generate og image for your post</h1>
+<br />
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An OG image (Open Graph image) is a specific type of image used in social media sharing. When you share a link to a webpage on platforms like Facebook, LinkedIn, or Twitter, the OG image is the image that appears in the preview of the link. This image is defined using Open Graph meta tags in the HTML of the webpage.
 
-## Available Scripts
+With OG Generator, you can generate a basic og image for your post.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Free OG Generate**: Input your title and content for the post, along with an image (optional) to generate a free and basic og for the post
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Uploaded Url**: Used cloudinary APIs to store the generated image. The image can be easily viewed or downloaded once generated.
+  
+- **Saved in Local Storage**: The generated image is available inside the local storage to persist data.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Set up the client and server as described in the Installation section.
+2. Provide title, content, image (optional) and click generate
+3. You can view the generated OG image, download and view the image
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+These are the steps to set up the project locally:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Client (Frontend)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository: `git clone [repository URL]`
+2. Install dependencies: `npm i`
+3. Start the client: `npm run start` (port 3000)
 
-### `npm run eject`
+Example `.env` file:
+```
+REACT_APP_BACKEND=__local_backend_url__
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Server (Backend)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Navigate to the server directory: `cd backend`.
+2. Install dependencies: `npm i`
+3. Start the server: `npm run start` (port 5000)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Example `.env` file:
+```
+CLOUDINARY_NAME=your_cloudinary_name
+CLOUDINARY_SECRET=your_cloudinary_secret
+CLOUDINARY_API=your_cloudinary_api
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Tech Stack
 
-## Learn More
+- **Frontend**: React.js
+- **Backend**: Using Express.js and Node.js
+- Cloudinary to store the generated image
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Demo
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- You can visit the site [here](https://og-generator-alpha.vercel.app)
+- Screenshots for the site are available below: 
 
-### Code Splitting
+![home](https://res.cloudinary.com/dwuyp1nss/image/upload/v1722970974/og/home_yb6dsw.jpg)
+![home2](https://res.cloudinary.com/dwuyp1nss/image/upload/v1722970974/og/home2_jgik7r.jpg)
+![generated](https://res.cloudinary.com/dwuyp1nss/image/upload/v1722970983/og/generated_p97hm2.jpg)
+![example og image](https://res.cloudinary.com/dwuyp1nss/image/upload/v1722966983/og/asngrmc2zyodqpjln9w9.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+If you have any questions or need support, feel free to contact at mayankbansal125@gmail.com
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
