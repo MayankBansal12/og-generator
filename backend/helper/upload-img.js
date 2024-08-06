@@ -13,10 +13,10 @@ const opts = {
 }
 
 const uploadImg = async (buffer) => {
-    // Convert buffer to Base64 string
+    // convert buffer to base64 string
     const base64Image = buffer.toString('base64');
 
-    // Add the required data URI prefix
+    // convert to data uri
     const dataURI = `data:image/jpeg;base64,${base64Image}`;
 
     return new Promise((resolve, reject) => {

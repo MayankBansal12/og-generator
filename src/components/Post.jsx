@@ -12,7 +12,12 @@ const Post = () => {
     };
 
     // for fetching image from backend server
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        if (!title || !content) {
+            alert("Title and content are required!")
+            return;
+        }
         // can convert this into a hook for calling backend apis
         const response = await fetch(backend + '/generate-og-image', {
             method: 'POST',
@@ -20,22 +25,25 @@ const Post = () => {
             body: JSON.stringify({ title, content, imageUrl: image })
         });
 
-        const blob = await response.blob();
-        console.log("blob", blob);
-        const imageUrl = URL.createObjectURL(blob);
-        document.querySelector('meta[property="og:image"]').setAttribute('content', imageUrl);
+        const res = await response.json();
+        console.log("res: ", res)
+
+        document.querySelector('meta[property="og:title"]').setAttribute('content', title);
+        document.querySelector('meta[property="og:description"]').setAttribute('content', content);
+        document.querySelector('meta[property="og:image"]').setAttribute('content', res.url);
     };
 
-
     return (
-        <div className="post-page">
-            <h1>Create a Post</h1>
-            <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-            <textarea placeholder="Content" value={content} onChange={(e) => setContent(e.target.value)} />
-            <input type="file" accept="image/*" onChange={handleImageChange} />
-            {image && <img src={image} alt="Post" />}
-            <button onClick={handleSubmit}>generate</button>
-        </div>
+        <form className="post-page" onSubmit={handleSubmit}>
+            <h2>Create a Post OG</h2>
+            <input className="input" type="text" placeholder="title for the post" value={title} onChange={(e) => setTitle(e.target.value)} required />
+            <textarea placeholder="content for the post" className="input" value={content} onChange={(e) => setContent(e.target.value)} required />
+
+            {image ? <img src={image} alt="Post" className="image-preview" /> : <div className="no-image-preview">No image to preview!</div>}
+            <label htmlFor="og-image" className="image-label">{!image ? "Upload a Image (optional)" : "Upload a new image"}</label>
+            <input id="og-image" type="file" accept="image/*" onChange={handleImageChange} className="image-input" />
+            <button type="submit" onClick={handleSubmit} className="btn">Generate!</button>
+        </form>
     );
 };
 

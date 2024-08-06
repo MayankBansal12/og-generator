@@ -9,13 +9,15 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/generate-og-image', async (req, res) => {
-    try {
-        const { title, content, imageUrl } = req.body;
+  try {
+    const { title, content, imageUrl } = req.body;
 
-        const browser = await puppeteer.launch();
-        const page = await browser.newPage();
+    console.log("imageurl: ", imageUrl)
 
-        const htmlContent = `
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+
+    const htmlContent = `
         <html>
           <head>
             <style>
@@ -36,24 +38,24 @@ app.post('/generate-og-image', async (req, res) => {
         </html>
       `;
 
-        await page.setContent(htmlContent);
-        const imageBuffer = await page.screenshot({ type: 'png' });
-        await browser.close();
+    await page.setContent(htmlContent);
+    const imageBuffer = await page.screenshot({ type: 'png' });
+    await browser.close();
 
-        console.log("value of immage buffer:", imageBuffer)
-        const uploadedUrl = await uploadImg(imageBuffer)
+    console.log("value of immage buffer:", imageBuffer)
+    const uploadedUrl = await uploadImg(imageBuffer)
 
-        res.status(200).json({ message: "image generated!", url: uploadedUrl })
-    } catch (error) {
-        console.error("error", error)
-        res.status(400).json({ message: "error generating image!", url: "" })
-    }
+    res.status(200).json({ message: "image generated!", url: uploadedUrl })
+  } catch (error) {
+    console.error("error", error)
+    res.status(400).json({ message: "error generating image!", url: "" })
+  }
 });
 
 app.get("/", (req, res) => {
-    res.send("running!")
+  res.send("running!")
 })
 
 app.listen(port, () => {
-    console.log("Server running at port: ", port);
+  console.log("Server running at port: ", port);
 })
