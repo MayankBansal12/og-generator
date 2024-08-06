@@ -93,3 +93,84 @@ button:disabled {
   align-items: center;
   height: 100px;
 }
+
+.og-container {
+  background: linear-gradient(to bottom, rgb(200 21 21 / 0%), rgb(218 218 218));
+}
+
+.og-image {
+  position: relative;
+  width: 1200px;
+  height: 630px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #ddd;
+}
+
+.og-img-header {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.og-img-title {
+  font-size: 2.7rem;
+  word-wrap: break-word;
+}
+
+.og-img-content {
+  word-wrap: break-word;
+  font-size: 1.5rem;
+}
+
+.og-img-logo {
+  width: 250px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.og-img-label {
+  background: #3B3B3B;
+  color: #FBFBFB;
+  padding: 2px 7px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.og-img-view {
+  max-width: 550px;
+  max-height: 500px;
+}
+
+.loading-popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: white;
+  font-size: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.post-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  gap: 1rem;
+}
+
+.post-image {
+  height: 400px;
+  width: 50%;
+  border-radius: 10px;
+}

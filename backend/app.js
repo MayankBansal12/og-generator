@@ -1,12 +1,13 @@
 const express = require("express");
 const cors = require("cors");
+require("dotenv").config()
 const puppeteer = require('puppeteer');
 const uploadImg = require("./helper/upload-img");
 const port = process.env.PORT || 5000;
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }))
 
 app.post('/generate-og-image', async (req, res) => {
   try {
@@ -42,15 +43,31 @@ app.post('/generate-og-image', async (req, res) => {
     const imageBuffer = await page.screenshot({ type: 'png' });
     await browser.close();
 
-    console.log("value of immage buffer:", imageBuffer)
-    const uploadedUrl = await uploadImg(imageBuffer)
+    // convert buffer to base64 string
+    const base64Image = imageBuffer.toString('base64');
 
-    res.status(200).json({ message: "image generated!", url: uploadedUrl })
+    // convert to data uri
+    const dataURI = `data:image/jpeg;base64,${base64Image}`;
+    // const uploadedUrl = await uploadImg(dataURI)
+
+    res.status(200).json({ message: "image generated!", url: dataURI })
   } catch (error) {
     console.error("error", error)
     res.status(400).json({ message: "error generating image!", url: "" })
   }
 });
+
+app.post("/upload-img", async (req, res) => {
+  try {
+    const { image } = req.body;
+
+    const uploadedUrl = await uploadImg(image)
+    res.status(200).json({ message: "image generated!", url: uploadedUrl })
+  } catch (error) {
+    console.error("error", error)
+    res.status(400).json({ message: "error generating image!", url: "" })
+  }
+})
 
 app.get("/", (req, res) => {
   res.send("running!")

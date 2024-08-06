@@ -1,9 +1,9 @@
 const cloudinary = require('cloudinary').v2
 
 cloudinary.config({
-    cloud_name: "dwuyp1nss",
-    api_key: "313548839779458",
-    api_secret: "_xbHEzLqKSgrZr9ofHEPRGzN2No",
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API,
+    api_secret: process.env.CLOUDINARY_SECRET,
 })
 const opts = {
     folder: "og",
@@ -12,13 +12,7 @@ const opts = {
     resource_type: "image"
 }
 
-const uploadImg = async (buffer) => {
-    // convert buffer to base64 string
-    const base64Image = buffer.toString('base64');
-
-    // convert to data uri
-    const dataURI = `data:image/jpeg;base64,${base64Image}`;
-
+const uploadImg = async (dataURI) => {
     return new Promise((resolve, reject) => {
         cloudinary.uploader.upload(dataURI, opts, async (error, result) => {
             if (result && result.secure_url) {
